@@ -24,6 +24,11 @@ require.def("sampleapp/models/cataltest",
             getTestPassed : function() {
                 return this.testPassed;
             },
+            /**
+             * Todo: Review the dependancy on antie.application
+             * @param testPassed
+             * @param debugMessage
+             */
             onTestComplete : function(testPassed, debugMessage) {
                 this.testPassed = !!testPassed;
                 this.debugMessage = debugMessage;
