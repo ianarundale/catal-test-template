@@ -1,3 +1,8 @@
+/**
+ * @fileOverview Requirejs module containing the catal.appui.widgets.CatalTest class
+ * @author Ian Arundale <ian.arundale@bbc.co.uk>
+ */
+
 require.def("sampleapp/appui/widgets/cataltest",
     [
         "antie/widgets/container",
@@ -5,6 +10,11 @@ require.def("sampleapp/appui/widgets/cataltest",
     ],
     function (Container, Label) {
         return Container.extend({
+            /**
+             * Constructs a catal test widget
+             * @param {String} id - The identifier for this test widget
+             * @param {String} testName - The name of the test
+             */
             init: function(id, testName) {
                 this._super(id);
 
@@ -20,16 +30,25 @@ require.def("sampleapp/appui/widgets/cataltest",
 
                 this.addClass("testcase");
             },
+            /**
+             * Updates the test case UI to a passed state
+             */
             setPassed : function() {
-                this.statusLabel.setText("PASSED ***");
+                this.statusLabel.setText("PASSED");
                 this.addClass("passed");
             },
+            /**
+             * Updates the test case UI to a failed state
+             */
             setFailed : function(debugMessage) {
-                this.statusLabel.setText("FAILED ***");
+                this.statusLabel.setText("FAILED");
                 this.debugLabel.setText(debugMessage);
                 this.addClass("failed");
             },
-            reset : function(){
+            /**
+             * Updates the test case UI into a pre-run state
+             */
+            reset : function() {
                 this.statusLabel.setText("Not Run");
                 this.removeClass("passed");
                 this.removeClass("failed");

@@ -1,7 +1,6 @@
 /**
  * @fileOverview Requirejs module containing the catal.appui.components.SimpleTestComponent class
  * @author Ian Arundale <ian.arundale@bbc.co.uk>
- * @version 1.0.0
  */
 
 require.def("sampleapp/appui/components/simple",
@@ -17,11 +16,9 @@ require.def("sampleapp/appui/components/simple",
 
         // All components extend Component
         return Component.extend({
-            init: function (params) {
-
+            init: function () {
                 var self = this;
 
-                // It is important to call the constructor of the superclass
                 this._super("cataltestcomponent");
 
                 this.addEventListener("beforerender", function (evt) {
@@ -36,7 +33,7 @@ require.def("sampleapp/appui/components/simple",
                 this._setUpUserInterface();
             },
             /**
-             * Construct the user interface elements
+             * Constructs the user interface elements so they are ready to be used in onBeforeRender
              */
             _setUpUserInterface : function() {
                 var self = this;
@@ -134,6 +131,10 @@ require.def("sampleapp/appui/components/simple",
                 // Force focus to the start test button
                 this.runTestButton.focus();
             },
+            /**
+             * Registers a test run as completed and updates the UI appropriately
+             * @param {catalTest} CatalTest
+             */
             registerTestRun: function(catalTest) {
                 // Update the test UI
                 var catalWidget = this.testContainer.getChildWidget(catalTest.id);
@@ -157,7 +158,7 @@ require.def("sampleapp/appui/components/simple",
                 this.testStatusLabel.setText(text);
             },
             /**
-             * Runs the test cases
+             * Runs all the test cases
              */
             _runTests : function() {
                 this.testRunCounter = 0;
@@ -169,7 +170,7 @@ require.def("sampleapp/appui/components/simple",
                 }
 
                 try {
-                    // Kick off all of the catal tests in parallel
+                    // Kick off all of the catal tests
                     for (var i in this.testCases) {
                         this.testCases[i].runTest();
                     }

@@ -244,6 +244,10 @@ initial element background in the base stylesheet, not in dynamically loaded sty
     background: gray;
 }
 
+.testcase span {
+    margin-right: 20px;
+}
+
 .passed {
     background: green;
 }
